@@ -1,0 +1,37 @@
+{
+    "id": "menu-data",
+    "section": "menu",
+    "menu": [
+        {
+            "id": "menu-1",
+            "text": "Accueil",
+            "link": "/"
+        },
+        {
+            "id": "menu-2",
+            "text": "Qui sommes-nous ?",
+            "link": "/about-us"
+        },
+        {
+            "id": "menu-3",
+            "text": "Services",
+            "link": "/it-services"
+        },
+      
+        {
+            "id": "menu-4",
+            "text": "Offres",
+            "link": "/pricing-plan"
+        },
+        {
+            "id": "menu-5",
+            "text": "News",
+            "link": "/blog"
+        },
+        {
+            "id": "menu-6",
+            "text": "Contactez-nous",
+            "link": "/contact-us"
+        }
+    ]
+}
