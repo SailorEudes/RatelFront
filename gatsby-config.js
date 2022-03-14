@@ -82,7 +82,7 @@ module.exports = {
         {
             resolve: "gatsby-source-strapi",
             options: {
-              apiURL: "https://thawing-earth-25319.herokuapp.com/api",
+              apiURL: "https://rateladmin.herokuapp.com/",
               collectionTypes: [
                 "avis",
                 "les-pluses",

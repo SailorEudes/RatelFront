@@ -24,7 +24,7 @@ import axios from 'axios';
 const ApppoinmentPage = ({ location, data }) => {
     const content = normalizedData(data?.page.content || []);
     const globalContent = normalizedData(data?.allGeneral.nodes || []);
-    axios.get('https://thawing-earth-25319.herokuapp.com/api/news').then(response => {
+    axios.get('https://rateladmin.herokuapp.com/api/news').then(response => {
         console.log(response);
     });
 
