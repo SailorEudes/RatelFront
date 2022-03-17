@@ -39,7 +39,7 @@ const Section = () => {
                         <SwiperSlider options={slider} vAlign="center">
                             {data.map((slide, i) => {
                                 return (
-                                    <SwiperSlide key={i} className="item">
+                                    <SwiperSlide key={i} className="item">cc3
                                         <ClientLogo
                                             image={slide.image}
                                             layout={3}

@@ -6,50 +6,46 @@ import { StaticQuery, graphql } from 'gatsby';
 
 const query = graphql`
   query {
-    allStrapiStats {
-      edges {
-        node {
-          data {
-            id
-            attributes {
-              Title
-              Number
-              Description
-            }
-          }
-        }
+    strapiStat {
+      data {
+        id
+        attributes {
+          Title
+          Number
+          Description
       }
+    }
     }
   }
 `;
 
 const FunFactArea = () => {
-    return (
-        <SectionWrap>
-            <Container>
+  return (
+    <SectionWrap>
+      <Container>
 
-                <GridWrap >
-                    <StaticQuery
-                        query={query}
-                        render={data => (
-                            <>
-                                {data.allStrapiStats.edges[0].node.data.slice(0, 4).map(stat => (
-                                    <Grid key={stat.id}>
-                                        <Counter
-                                            title={stat.attributes.Title}
-                                            countTo={stat.attributes.Number}
-                                            text={stat.attributes.Description}
-                                        />
-                                    </Grid>
-                                ))}
-                            </>
-                        )}
+        <GridWrap >
+          <StaticQuery
+            query={query}
+            render={data => (
+              <>
+                {data.strapiStat.data.slice(0, 4).map(stat => (
+                  <Grid key={stat.id}>
+                    <Counter
+                      title={stat.attributes.Title}
+                      countTo={stat.attributes.Number}
+                      text={stat.attributes.Description}
                     />
-                </GridWrap>
+                  </Grid>
+                ))}
+              </>
+            )}
+          />
+        </GridWrap>
 
-            </Container>
-        </SectionWrap>
-    );
+      </Container>
+    </SectionWrap>
+  );
 };
 
 export default FunFactArea;

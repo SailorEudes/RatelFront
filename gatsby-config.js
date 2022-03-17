@@ -80,20 +80,48 @@ module.exports = {
             },
         },
         {
-            resolve: "gatsby-source-strapi",
+            resolve: `gatsby-source-strapi`,
             options: {
-              apiURL: "https://rateladmin.herokuapp.com/api",
-              collectionTypes: [
-                "avis",
-                "les-pluses",
-                "news",
-                "portfolios",
-                "services",
-                "stats",
-              ],
-              queryLimit: 1000,
+                apiURL: `http://localhost:1337`,
+                collectionTypes: [
+                    {
+                        name: `stat`,
+                        endpoint: `api/stats`,
+                        api: { qs: { populate: '*' } }
+                    },
+                    {
+                        name: `les-plus`,
+                        endpoint: `api/les-pluses`,
+                        api: { qs: { populate: '*' } }
+                    },
+                    {
+                        name: `new`,
+                        endpoint: `api/news`,
+                        api: { qs: { populate: '*' } }
+                    },
+                    {
+                        name: `portfolio`,
+                        endpoint: `api/portfolios`,
+                        api: { qs: { populate: '*' } }
+                    },
+                    {
+                        name: `service`,
+                        endpoint: `api/services`,
+                        api: { qs: { populate: '*' } }
+                    },
+                    {
+                        name: `stat`,
+                        endpoint: `api/stats`,
+                        api: { qs: { populate: '*' } }
+                    },
+                    {
+                        name: `partner`,
+                        endpoint: `api/partners`,
+                        api: { qs: { populate: '*' } }
+                    },
+                ]
             },
-          },
+        },
         {
             resolve: `gatsby-source-filesystem`,
             options: {
