@@ -7,19 +7,16 @@ import { BrandLogoWrap } from "./style";
 const ClientLogo = ({ path, image, hoverImage, title, layout, ...props }) => {
     return (
         <BrandLogoWrap $layout={layout} {...props}>
-            <a href={path}>
+            <a target="_blank" href={path} rel="nofollow">
                 <div className="brand-logo__image">
-                    {image?.src && (
-                        <Image src={image.src} alt={image?.alt || title} />
+                    {image && (
+                        <Image src={image} alt={title} />
                     )}
                 </div>
                 {(layout === 1 || layout === 2) && (
                     <div className="brand-logo__image-hover">
-                        {hoverImage?.src && (
-                            <Image
-                                src={hoverImage.src}
-                                alt={hoverImage?.alt || title}
-                            />
+                        {hoverImage && (
+                            <Image src={image} alt={title} />
                         )}
                     </div>
                 )}
@@ -31,8 +28,7 @@ const ClientLogo = ({ path, image, hoverImage, title, layout, ...props }) => {
 ClientLogo.propTypes = {
     path: PropTypes.string,
     title: PropTypes.string,
-    image: PropTypes.shape(ImageType),
-    hoverImage: PropTypes.shape(ImageType),
+    image: PropTypes.string,
     layout: PropTypes.oneOf([1, 2, 3, 4]),
 };
 

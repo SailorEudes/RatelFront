@@ -1,11 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
 import ClientLogo from "@ui/client-logo";
 import { Container } from "@ui/wrapper";
 import SwiperSlider, { SwiperSlide } from "@ui/swiper";
-import { ItemType } from "@utils/types";
 import { SectionWrap } from "./style";
 import { StaticQuery, graphql } from 'gatsby';
+import axios from 'axios';
 
 const query = graphql`
 query {
@@ -13,13 +12,16 @@ query {
         data {
           attributes {
             Link
-            createdAt
+            Title
             Logo {
               data {
                 attributes {
-                  url
+                  formats {
+                    thumbnail {
+                      url
+                    }
+                  }
                 }
-                id
               }
             }
           }
@@ -58,40 +60,61 @@ const sliderStyle = {
 
 const PartnerArea = () => {
     return (
-        <SectionWrap>
+        <SectionWrap >
             <Container>
-                <SwiperSlider options={slider} vAlign="center">
+                <StaticQuery
+                    query={query}
+                    render={data => (
+                        <>
 
-                    <StaticQuery
-                        query={query}
-                        render={data => (
-                            <ul>
-                                {data.strapiPartner.data.map(partner => (
-                                    <SwiperSlide key={partner.id}>
-                                        <ClientLogo
-                                            layout={1}
-                                            title={item.id}
-                                            path={item.path}
-                                            image={item.images?.[0]}
-                                            hoverImage={item.images?.[1]}
-                                        />
-                                        <li key={partner.id}>{partner.attributes.Logo.data.attributes.url}</li>
-                                    </SwiperSlide>
-                                ))}
-                            </ul>
-                        )}
-                    />
-                </SwiperSlider>
+                            <SwiperSlider options={slider} vAlign="center">
+                                {data.strapiPartner.data.map((partner) => {
+                                    return (
+                                        <SwiperSlide key={partner.id}>
+                                            <ClientLogo
+                                                layout={1}
+                                                title="Image Ratel Roche"
+                                                path={partner.attributes.Link}
+                                                image={"http://localhost:1337" + partner.attributes.Logo.data.attributes.formats.thumbnail.url}
+                                                hoverImage={"http://localhost:1337" + partner.attributes.Logo.data.attributes.formats.thumbnail.url}
+                                            />
+                                        </SwiperSlide>)
+                                })}
+                            </SwiperSlider>
+
+                        </>
+                    )}
+                />
+
             </Container>
-        </SectionWrap>
+        </SectionWrap >
     );
 }
 
-
-PartnerArea.propTypes = {
-    data: PropTypes.shape({
-        items: PropTypes.arrayOf(PropTypes.shape(ItemType)),
-    }),
+const PartnerAreaOld = ({ data }) => {
+    return (
+        <SectionWrap>
+            <Container>
+                {data?.items && (
+                    <SwiperSlider options={slider} vAlign="center">
+                        {data.items?.map((item) => {
+                            return (
+                                <SwiperSlide key={item.id}>
+                                    <ClientLogo
+                                        layout={1}
+                                        title={item.id}
+                                        path={item.path}
+                                        image={item.images?.[0]}
+                                        hoverImage={item.images?.[1]}
+                                    />
+                                </SwiperSlide>
+                            );
+                        })}
+                    </SwiperSlider>
+                )}
+            </Container>
+        </SectionWrap>
+    );
 };
 
 export default PartnerArea;
