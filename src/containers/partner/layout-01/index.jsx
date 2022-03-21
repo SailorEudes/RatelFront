@@ -9,8 +9,8 @@ import axios from 'axios';
 const query = graphql`
 query {
     strapiPartner {
-        data {
-          attributes {
+            id
+            attributes {
             Link
             Title
             Logo {
@@ -25,8 +25,6 @@ query {
               }
             }
           }
-          id
-        }
     }
 }
 `;
@@ -90,31 +88,5 @@ const PartnerArea = () => {
         </SectionWrap >
     );
 }
-
-const PartnerAreaOld = ({ data }) => {
-    return (
-        <SectionWrap>
-            <Container>
-                {data?.items && (
-                    <SwiperSlider options={slider} vAlign="center">
-                        {data.items?.map((item) => {
-                            return (
-                                <SwiperSlide key={item.id}>
-                                    <ClientLogo
-                                        layout={1}
-                                        title={item.id}
-                                        path={item.path}
-                                        image={item.images?.[0]}
-                                        hoverImage={item.images?.[1]}
-                                    />
-                                </SwiperSlide>
-                            );
-                        })}
-                    </SwiperSlider>
-                )}
-            </Container>
-        </SectionWrap>
-    );
-};
 
 export default PartnerArea;

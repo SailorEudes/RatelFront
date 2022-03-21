@@ -82,7 +82,7 @@ module.exports = {
         {
             resolve: `gatsby-source-strapi`,
             options: {
-                apiURL: `https://rateladmin.herokuapp.com`,
+                apiURL: `https://localhost:1337`,
                 collectionTypes: [
                     {
                         name: `stat`,
